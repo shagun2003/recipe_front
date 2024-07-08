@@ -12,7 +12,7 @@ const Ima=styled(Box)`
 `
 const Ele=styled(Typography)`
      font-size:70px;
-     color:linear-gradient(to right, #c4e17f, #f7fdca);
+     color:rgb(255, 255, 255);
      line-height:1;
      font-family: 'Arial', sans-serif;
 `
