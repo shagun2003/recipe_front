@@ -12,8 +12,9 @@ const Ima=styled(Box)`
 `
 const Ele=styled(Typography)`
      font-size:70px;
-     color:#808080;
+     color:linear-gradient(to right, #c4e17f, #f7fdca);
      line-height:1;
+     font-family: 'Arial', sans-serif;
 `
 const Banner = () => {
   return (
