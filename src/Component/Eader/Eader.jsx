@@ -40,7 +40,7 @@ const Eader = () => {
           <Link to='/'>HOME</Link>
           <Link to='/about'>ABOUT</Link>
           <Link to='/contact'>CONTACT</Link>
-          <Link to='/login'>LOGIN</Link>
+          <Link to='/login'>LOGOUT</Link>
         </LinkContainer>
       </Container>
     </Component>
