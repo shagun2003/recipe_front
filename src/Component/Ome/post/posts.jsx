@@ -41,7 +41,7 @@ const Details=styled(Typography)
 }`
 const Posts=({posts})=>
     {
-       const url=posts.picture?posts.picture:"https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80"
+       const url=posts.picture?posts.picture:"https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         return (
             <Container>
                 <Imae src={url} alt="blop"/>
