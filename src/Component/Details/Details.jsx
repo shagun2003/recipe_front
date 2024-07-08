@@ -55,7 +55,7 @@ const Details = () => {
     const { id } = useParams();
     const { account } = useContext(DataContext);
     const nav=useNavigate();
-    const url = post.picture ? post.picture : 'https://unsplash.com/images/food';
+    const url = post.picture ? post.picture : 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
     const deleteb=async()=>
         {
            let res=await API.deletePost(post._id);
