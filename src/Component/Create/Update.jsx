@@ -51,7 +51,7 @@ const Updatepost = () => {
    const {account}=useContext(DataContext);
    const nav=useNavigate();
    const {id}=useParams();
-   const url=Post.picture?Post.picture:'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
+   const url=Post.picture?Post.picture:'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
    useEffect(() => {
     const fetchData=async()=>
         {
