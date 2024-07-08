@@ -4,12 +4,19 @@ import imageURL from './spice.png';
 import { API } from '../../service/api.js';
 import { DataContext } from '../../context/Dataprovider.jsx';
 import { useNavigate } from 'react-router-dom';
+
 const Comp = styled(Box)`
-  width: 400px;
+  width: 100%; /* Adjust as per your design */
+  max-width: 400px; /* Adjust as per your design */
   margin: auto;
   box-shadow: 5px 2px 5px 2px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
-  background-color:#F8F9FA;
+  background-color: #F8F9FA;
+  padding: 20px; /* Adjust padding */
+  @media (max-width: 600px) {
+    /* Adjust breakpoint as per your mobile design needs */
+    max-width: 90%; /* Example: Adjust width for smaller screens */
+  }
 `;
 
 const StyledImage = styled('img')`
@@ -18,7 +25,6 @@ const StyledImage = styled('img')`
   margin: auto;
   display: flex;
   padding: 40px;
-
 `;
 
 const TextFieldContainer = styled(Box)`
@@ -78,13 +84,14 @@ const loginValues = {
   password: '',
 };
 
-const Login = ({isauten}) => {
+const Login = ({ isauten }) => {
   const [account, toggleAccount] = useState('login');
   const [signup, setSignup] = useState(signupValues);
   const [error, showError] = useState('');
-  const[login,setLogin]=useState(loginValues)
-  const {setaccount}=useContext(DataContext)
-  const navi=useNavigate();
+  const [login, setLogin] = useState(loginValues);
+  const { setaccount } = useContext(DataContext);
+  const navigate = useNavigate();
+
   const toggleSignup = () => {
     account === 'signup' ? toggleAccount('login') : toggleAccount('signup');
   };
@@ -92,35 +99,35 @@ const Login = ({isauten}) => {
   const onInputChange = (e) => {
     setSignup({ ...signup, [e.target.name]: e.target.value });
   };
-   const onValueChange=(e)=>
-    {
-      setLogin({...login,[e.target.name]:e.target.value});
-    }
+
+  const onValueChange = (e) => {
+    setLogin({ ...login, [e.target.name]: e.target.value });
+  };
+
   const signupUser = async () => {
     let response = await API.userSignup(signup);
     if (response.isSuccess) {
-        showError('');
-        setLogin(signupValues);
-        toggleAccount('login');
-    } else {
-        showError('Something went wrong! please try again later');
-    }
-}
-const loginUser = async () => {
-  let response = await API.userLogin(login);
-  if (response.isSuccess) {
       showError('');
-      sessionStorage.setItem('accessToken',`Bearer ${response.data.accessToken}`);
-      sessionStorage.setItem('refresToken',`Bearer ${response.data.refresToken}`);
-       setaccount({username:response.data.username,name:response.data.name});
-       isauten(true);
-       navi('/');
-       
-       
-  } else {
+      setLogin(signupValues);
+      toggleAccount('login');
+    } else {
       showError('Something went wrong! please try again later');
-  }
-}
+    }
+  };
+
+  const loginUser = async () => {
+    let response = await API.userLogin(login);
+    if (response.isSuccess) {
+      showError('');
+      sessionStorage.setItem('accessToken', `Bearer ${response.data.accessToken}`);
+      sessionStorage.setItem('refreshToken', `Bearer ${response.data.refreshToken}`);
+      setaccount({ username: response.data.username, name: response.data.name });
+      isauten(true);
+      navigate('/');
+    } else {
+      showError('Something went wrong! please try again later');
+    }
+  };
 
   return (
     <Comp>
@@ -128,19 +135,18 @@ const loginUser = async () => {
         <StyledImage src={imageURL} alt="login" />
         {account === 'login' ? (
           <TextFieldContainer>
-            <TextField variant="standard" value={login.username} onChange={(e) => onValueChange(e)}  name="username" label="Username" />
-            <TextField variant="standard" value={login.password} onChange={(e) => onValueChange(e)} name="password"  label="Password" />
+            <TextField variant="standard" value={login.username} onChange={(e) => onValueChange(e)} name="username" label="Username" />
+            <TextField variant="standard" value={login.password} onChange={(e) => onValueChange(e)} name="password" label="Password" type="password" />
             {error && <Error>{error}</Error>}
             <Lobutton onClick={loginUser} variant="contained">Login</Lobutton>
             <Text style={{ textAlign: "center" }}>OR</Text>
             <Sibutton onClick={toggleSignup}>Create Account</Sibutton>
-           
           </TextFieldContainer>
         ) : (
           <TextFieldContainer>
-            <TextField variant="standard" onChange={(e) => onInputChange(e)}  name="name" label="Name" />
+            <TextField variant="standard" onChange={(e) => onInputChange(e)} name="name" label="Name" />
             <TextField variant="standard" onChange={(e) => onInputChange(e)} name="username" label="Username" />
-            <TextField variant="standard" onChange={(e) => onInputChange(e)} name="password" label="Password" />
+            <TextField variant="standard" onChange={(e) => onInputChange(e)} name="password" label="Password" type="password" />
             {error && <Error>{error}</Error>}
             <Sibutton onClick={signupUser}>Signup</Sibutton>
             <Text style={{ textAlign: "center" }}>OR</Text>
