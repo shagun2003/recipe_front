@@ -121,8 +121,7 @@ const Login = ({ isauten }) => {
       isauten(true);
       navi('/');
     } else {
-      console.log(response.message); // Log the error message
-      showError(response.message || 'Something went wrong! Please try again later');
+      showError('Something went wrong! please try again later');
     }
   };
 
