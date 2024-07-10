@@ -10,7 +10,7 @@ const Comp = styled(Box)`
   margin: auto;
   box-shadow: 5px 2px 5px 2px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
-  background-color:#F8F9FA;
+  background-color: #F8F9FA;
 `;
 
 const StyledImage = styled('img')`
@@ -112,6 +112,7 @@ const Login = ({ isauten }) => {
 
   const loginUser = async () => {
     let response = await API.userLogin(login);
+    console.log(response); // Log the response to check the structure
     if (response.isSuccess) {
       showError('');
       sessionStorage.setItem('accessToken', `Bearer ${response.data.accessToken}`);
@@ -120,6 +121,7 @@ const Login = ({ isauten }) => {
       isauten(true);
       navi('/');
     } else {
+      console.log(response.message); // Log the error message
       showError(response.message || 'Something went wrong! Please try again later');
     }
   };
