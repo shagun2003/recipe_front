@@ -6,17 +6,11 @@ import { DataContext } from '../../context/Dataprovider.jsx';
 import { useNavigate } from 'react-router-dom';
 
 const Comp = styled(Box)`
-  width: 100%; /* Adjust as per your design */
-  max-width: 400px; /* Adjust as per your design */
+  width: 400px;
   margin: auto;
   box-shadow: 5px 2px 5px 2px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
-  background-color: #F8F9FA;
-  padding: 20px; /* Adjust padding */
-  @media (max-width: 600px) {
-    /* Adjust breakpoint as per your mobile design needs */
-    max-width: 90%; /* Example: Adjust width for smaller screens */
-  }
+  background-color:#F8F9FA;
 `;
 
 const StyledImage = styled('img')`
@@ -79,6 +73,7 @@ const signupValues = {
   username: '',
   password: '',
 };
+
 const loginValues = {
   username: '',
   password: '',
@@ -90,7 +85,7 @@ const Login = ({ isauten }) => {
   const [error, showError] = useState('');
   const [login, setLogin] = useState(loginValues);
   const { setaccount } = useContext(DataContext);
-  const navigate = useNavigate();
+  const navi = useNavigate();
 
   const toggleSignup = () => {
     account === 'signup' ? toggleAccount('login') : toggleAccount('signup');
@@ -108,10 +103,10 @@ const Login = ({ isauten }) => {
     let response = await API.userSignup(signup);
     if (response.isSuccess) {
       showError('');
-      setLogin(signupValues);
+      setSignup(signupValues);
       toggleAccount('login');
     } else {
-      showError('Something went wrong! please try again later');
+      showError('Something went wrong! Please try again later');
     }
   };
 
@@ -123,9 +118,9 @@ const Login = ({ isauten }) => {
       sessionStorage.setItem('refreshToken', `Bearer ${response.data.refreshToken}`);
       setaccount({ username: response.data.username, name: response.data.name });
       isauten(true);
-      navigate('/');
+      navi('/');
     } else {
-      showError('Something went wrong! please try again later');
+      showError(response.message || 'Something went wrong! Please try again later');
     }
   };
 
@@ -135,8 +130,8 @@ const Login = ({ isauten }) => {
         <StyledImage src={imageURL} alt="login" />
         {account === 'login' ? (
           <TextFieldContainer>
-            <TextField variant="standard" value={login.username} onChange={(e) => onValueChange(e)} name="username" label="Username" />
-            <TextField variant="standard" value={login.password} onChange={(e) => onValueChange(e)} name="password" label="Password" type="password" />
+            <TextField variant="standard" value={login.username} onChange={onValueChange} name="username" label="Username" />
+            <TextField variant="standard" value={login.password} onChange={onValueChange} name="password" label="Password" />
             {error && <Error>{error}</Error>}
             <Lobutton onClick={loginUser} variant="contained">Login</Lobutton>
             <Text style={{ textAlign: "center" }}>OR</Text>
@@ -144,9 +139,9 @@ const Login = ({ isauten }) => {
           </TextFieldContainer>
         ) : (
           <TextFieldContainer>
-            <TextField variant="standard" onChange={(e) => onInputChange(e)} name="name" label="Name" />
-            <TextField variant="standard" onChange={(e) => onInputChange(e)} name="username" label="Username" />
-            <TextField variant="standard" onChange={(e) => onInputChange(e)} name="password" label="Password" type="password" />
+            <TextField variant="standard" onChange={onInputChange} name="name" label="Name" />
+            <TextField variant="standard" onChange={onInputChange} name="username" label="Username" />
+            <TextField variant="standard" onChange={onInputChange} name="password" label="Password" />
             {error && <Error>{error}</Error>}
             <Sibutton onClick={signupUser}>Signup</Sibutton>
             <Text style={{ textAlign: "center" }}>OR</Text>
