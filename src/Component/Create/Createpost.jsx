@@ -51,7 +51,7 @@ const Createpost = () => {
    const location=useLocation();
    const {account}=useContext(DataContext);
    const nav=useNavigate();
-   const url=Post.picture?Post.picture:'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
+   const url=Post.picture?Post.picture:'https://www.google.com/url?sa=i&url=https%3A%2F%2Findianexpress.com%2Farticle%2Flifestyle%2Ffood-wine%2Fworlds-best-cities-local-food-indian-metropolises-taste-atlas-9069300%2F&psig=AOvVaw0IMA06Lo0kEksk7QAKa1fS&ust=1723527835966000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIDFo-vf7ocDFQAAAAAdAAAAABAE';
    const savepost=async()=>
     {
          let res= await API.createPost(Post);
