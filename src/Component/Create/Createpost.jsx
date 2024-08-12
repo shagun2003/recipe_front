@@ -52,7 +52,7 @@ const Createpost = () => {
    const location=useLocation();
    const {account}=useContext(DataContext);
    const nav=useNavigate();
-   const url=Post.picture?Post.picture:url${food};
+   const url=Post.picture?Post.picture:food;
    const savepost=async()=>
     {
          let res= await API.createPost(Post);
