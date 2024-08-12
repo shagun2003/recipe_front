@@ -1,5 +1,6 @@
 import { Box, Typography ,styled} from "@mui/material"
 import { addellip } from "../../../utils/common-utils"
+import food from './food.jpg';
 const Container = styled(Box)`
     border: 1px solid #d3cede;
     border-radius: 10px;
@@ -41,7 +42,7 @@ const Details=styled(Typography)
 }`
 const Posts=({posts})=>
     {
-       const url=posts.picture?posts.picture:"https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+       const url=posts.picture?posts.picture:food;
         return (
             <Container>
                 <Imae src={url} alt="blop"/>
