@@ -5,6 +5,7 @@ import {AddCircle as Add} from '@mui/icons-material'
 import { useLocation,useNavigate} from 'react-router-dom';
 import { DataContext } from '../../context/Dataprovider';
 import { API } from '../../service/api';
+import food from './food.jpg'
 import two from './two.jpg';
 const Container = styled('img')`
   width: 100%;      
@@ -51,7 +52,7 @@ const Createpost = () => {
    const location=useLocation();
    const {account}=useContext(DataContext);
    const nav=useNavigate();
-   const url=Post.picture?Post.picture:'https://www.google.com/url?sa=i&url=https%3A%2F%2Findianexpress.com%2Farticle%2Flifestyle%2Ffood-wine%2Fworlds-best-cities-local-food-indian-metropolises-taste-atlas-9069300%2F&psig=AOvVaw0IMA06Lo0kEksk7QAKa1fS&ust=1723527835966000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIDFo-vf7ocDFQAAAAAdAAAAABAE';
+   const url=Post.picture?Post.picture:url${food};
    const savepost=async()=>
     {
          let res= await API.createPost(Post);
