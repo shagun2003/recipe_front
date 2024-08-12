@@ -5,6 +5,7 @@ import { Edit, Delete } from '@mui/icons-material';
 import { API } from '../../service/api';
 import { DataContext } from '../../context/Dataprovider';
 import Comments from './Comments/Comments';
+import food from './food.jpg';
 const Cont = styled(Box)(({theme})=>({
     margin: '50px 100px',
     [theme.breakpoints.down('md')]:{
@@ -55,7 +56,7 @@ const Details = () => {
     const { id } = useParams();
     const { account } = useContext(DataContext);
     const nav=useNavigate();
-    const url = post.picture ? post.picture : 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
+    const url = post.picture ? post.picture : food;
     const deleteb=async()=>
         {
            let res=await API.deletePost(post._id);
